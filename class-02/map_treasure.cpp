@@ -10,9 +10,10 @@ public:
 	bool canGoEast;
 	bool canGoWest;
 	char mapChar;
-}
+};
+int main(){
 
-
+string input;
 int x = 1;
 int y =1;
 
@@ -20,7 +21,7 @@ Room map[4][4];
 
 for (int i=0; i<4; i++){
 	for (int j=0; j<4; j++){
-		map [j][i].description = "Your house is on fire. You have to rescue your young sister!"
+		map [j][i].description = "Your house is on fire. You have to rescue your young sister!";
 		map [j][i].canGoNorth = false;
 		map [j][i].canGoSouth = false;
 		map [j][i].canGoWest = false;
@@ -28,13 +29,7 @@ for (int i=0; i<4; i++){
 	}
 }
 
-for (int i=0; i<4; i++){
-	for (int j=0; j<4; j++){
-		cout << map[j][i].description;
-	}
-	cout <<endl;
-}
-	map[1][1].description = "You are at the living room. Find the Kitchen!";
+	map[1][1].description = "Your house is on fire. You have rescue your young sister!. \n You are at the living room. Find the Kitchen!";
 	map[1][1].canGoEast = true;
 	map[1][1].canGoWest = true;
 	map[1][1].canGoNorth = true;
@@ -76,7 +71,7 @@ for (int i=0; i<4; i++){
 	map[0][2].canGoNorth = true;
 	map[0][2].canGoEast = true;
 
-	map[0][3].description = "You can't go in! there's huge fire!!!!"
+	map[0][3].description = "You can't go in! there's huge fire!!!!";
 
 	map[1][2].description = "You found your room. Find drawing room";
 	map[1][2].canGoWest= true;
@@ -94,9 +89,48 @@ for (int i=0; i<4; i++){
 	map[3][3].canGoWest= true;
 	map[3][3].canGoNorth = true;
 
-	map[2][2].description = "You found your sister!!! she's safe"
+	map[2][2].description = "You found your sister!!! she's safe \n But now you both are locked... hit 'q' to quit ";
 
 
+
+while (input != "q"){
+	cout << " \n you are at" << x << " " << y << endl;
+	cout << map[x][y].description << endl;
+	cout << "which Direction?" << "E / W / N / S" << endl;
+	cin >> input;
+
+	if (input== "N" || input == "n"){
+		if (map [x][y].canGoNorth == true){
+			y--;
+		} else {
+			cout << "The door is locked! find another way \n" << endl;
+		}
+	}  else if (input== "S" || input == "s"){
+		if (map [x][y].canGoSouth == true){
+			y++;
+		} else {
+			cout << "The door is locked! find another way \n" << endl;
+		} 
+	}  	else if (input== "E" || input == "e"){
+		if (map [x][y].canGoEast == true){
+			x++;
+		} else {
+			cout << "The door is locked! find another way \n" << endl;
+		} 
+	}	else if (input== "W" || input == "w"){
+		if (map [x][y].canGoWest == true){
+			x--;
+		} else {
+			cout << "The door is locked! find another way \n" << endl;
+		} 
+
+	}	else {
+		cout << "That's not the direction" << input << "\n";
+	}
+
+}
+return 0;
+}
 
 //still in progress~!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
