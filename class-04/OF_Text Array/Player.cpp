@@ -30,22 +30,27 @@ void Player::update(){
 //        myfont.drawString("0",pointArray[i].x, pointArray[i].y);
 //    }
 
-    if (numMoves < totalMoves) {
-        int r = floor(ofRandom(4));
-        if (r == 0) {
-            y-=60;
-        } else if (r == 1) {
-            x+=60;
-        } else if (r == 2) {
-            y+=60;
-        } else if (r == 3) {
-            x-=60;
-        }
-        numMoves++;
-        cout << "x: " << x << ", y: " << y << endl;
-    }
+    x = 4;
+    y = 4;
+    
+//    if (numMoves < totalMoves) {
+//        int r = floor(ofRandom(4));
+//        if (r == 0) {
+//            y-=60;
+//        } else if (r == 1) {
+//            x+=60;
+//        } else if (r == 2) {
+//            y+=60;
+//        } else if (r == 3) {
+//            x-=60;
+//        }
+//        numMoves++;
+//        cout << "x: " << x << ", y: " << y << endl;
+//    }
 
-
+//    if (up == true) {
+//        y--;
+//    }
     
 }
 

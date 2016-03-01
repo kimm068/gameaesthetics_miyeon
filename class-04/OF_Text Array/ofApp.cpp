@@ -38,7 +38,12 @@ void ofApp::draw(){
     //    cout << "============================" << endl;
     
     for (int i=0; i<pointArray.size(); i++){
-        myfont.drawString("O",pointArray[i].x, pointArray[i].y);
+        
+        if (player.y * width + player.x == i) {
+            myfont.drawString("@",pointArray[i].x, pointArray[i].y);
+        } else {
+            myfont.drawString("O",pointArray[i].x, pointArray[i].y);
+        }
     }
     
     player.display();
