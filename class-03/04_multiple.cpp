@@ -1,6 +1,4 @@
 // My questions are marked with ***
-
-
 #include <iostream>
 #include <fstream>
 using namespace std;
@@ -8,62 +6,51 @@ using namespace std;
 char getTile(int x, int y, unsigned char data[], int size, int w, int h);
 int writeBytes(int offset, unsigned char data[]);
 
-// ***
-// I was trying to draw different emotions based on the input.
-// if i type 'happy' then it shows smile.bmp, if i type sick, shows sick.bmp...
-//***
-
-
-// creating an object called LandType means creating a class?
-// ***
-
-
-class LandType {
-public:
-	string description:
-	int smile();
-	int sick();
-	int angry();
-
-};
-
 int main() {
-	// ifstream map("blankbmp.bmp");
+	ifstream map1("smile.bmp");
+	ifstream map2("sick.bmp");
+	ifstream map3("angry.bmp");
 
-	landType::smile(){
-		ifstream map("smile.bmp");
-	}
+	unsigned char data1; //variable to store temporary bytes
 
-	landType::sick(){
-		ifstream map("sick.bmp");
-	}
-	landType::angry(){
-		ifstream map("angry.bmp");
-	}
-	
-
-	unsigned char data; //variable to store temporary bytes
-
-	const int BMPSIZE = 376;	//actual size in bytes of the bmp file
-	unsigned char bmpBytes[BMPSIZE];	//array of 8-bit integers to store our bytes
+	const int BMPSIZE = 824;	//actual size in bytes of the bmp file
+	unsigned char bmpBytes1[BMPSIZE];	//array of 8-bit integers to store our bytes
 	
 	int whichByte = 0;
-	while (map >> data) {		
-		//as long as the file has bytes, plug it into the array
-		bmpBytes[whichByte] = data;
+	while (map1 >> data1) {		
+		bmpBytes1[whichByte] = data1;
 		whichByte++;
 	}
 
-	map.close();
+	map1.close();
 
+	unsigned char data2; //variable to store temporary bytes
+	// const int BMPSIZE = 376;	//actual size in bytes of the bmp file
+	unsigned char bmpBytes2[BMPSIZE];	//array of 8-bit integers to store our bytes
+	
+	whichByte = 0;
+	while (map2 >> data2) {		
+		//as long as the file has bytes, plug it into the array
+		bmpBytes2[whichByte] = data2;
+		whichByte++;
+	}
+	map2.close();
 
-// ***
-// when we create a grid array, should I name them all separately as below?
-// ***
+	unsigned char data3; //variable to store temporary bytes
+	// const int BMPSIZE = 376;	//actual size in bytes of the bmp file
+	unsigned char bmpBytes3[BMPSIZE];	//array of 8-bit integers to store our bytes
+	
+	whichByte = 0;
+	while (map3 >> data3) {		
+		//as long as the file has bytes, plug it into the array
+		bmpBytes3[whichByte] = data3;
+		whichByte++;
+	}
+	map3.close();
 
 	//create a new array to hold the values that we actually want.
-	const int SIZE = 10;
-	char smile[SIZE][SIZE
+	const int SIZE = 16;
+	char smile[SIZE][SIZE];
 	char sick[SIZE][SIZE];
 	char angry[SIZE][SIZE];
 
@@ -73,78 +60,119 @@ int main() {
 			int r = 0;
 			int g = 0;
 			int b = 0;
-			// int p = 0;
-			// int c = 0;
 			int n = 54 + (i * SIZE + j) * 3;
 
+			b = writeBytes(n,bmpBytes1);
+			g = writeBytes(n+1,bmpBytes1);
+			r = writeBytes(n+2,bmpBytes1);
 
-//***
-//Do i have to make different values to every color I use? ex. cyan, pink... 
-//***
+			if (r == 255 && g == 255 && b == 255) {
+				smile[j][i] = '.';
+			} else if (r==255 && g==0 && b==0){
+				smile[j][i] = '*';
+			} else if (r==0 && g==255 && b==0){
+				smile[j][i] = '*';
+			} else if (r==0 && g==0 && b==0){
+				smile[j][i] = '@';
+			} else if (r==255 && g==255 && b==0){
+				smile[j][i] = '*';
+			} else if (r == 0 && g == 0 && b == 255) {
+				smile[j][i] = '*';
+			} else {
+				smile[j][i] = '#';
+			}
 
-
-			b = writeBytes(n,bmpBytes);
-			g = writeBytes(n+1,bmpBytes);
-			r = writeBytes(n+2,bmpBytes);
-			// p = writeBytes(n+3,bmpBytes);
-			// c = writeBytes(n+4,bmpBytes);
-
-			cout << r << " ";
-			cout << g << " ";
-			cout << b << "\n";
-			// cout << p << " ";
-			// cout << c << "\n";
-
-// ***
-// I"m keep getting an error at this part below
-// ***
+			b = writeBytes(n,bmpBytes2);
+			g = writeBytes(n+1,bmpBytes2);
+			r = writeBytes(n+2,bmpBytes2);
 
 
 			if (r == 255 && g == 255 && b == 255) {
-				grid[j][i] = '-';
+				sick[j][i] = '.';
 			
 			} else if (r==255 && g==0 && b==0){
-				grid[j][i] = '*';
+				sick[j][i] = '*';
 			
 			} else if (r==0 && g==255 && b==0){
-				grid[j][i] = '*';
+				sick[j][i] = '*';
 				
 			} else if (r==0 && g==0 && b==0){
-				grid[j][i] = '@';
+				sick[j][i] = '@';
 			
 			} else if (r==255 && g==255 && b==0){
-				grid[j][i] = '*';
+				sick[j][i] = '*';
 			
 			} else {
-				grid[j][i] = '#';
+				sick[j][i] = '#';
 			
+			}
+
+			b = writeBytes(n,bmpBytes3);
+			g = writeBytes(n+1,bmpBytes3);
+			r = writeBytes(n+2,bmpBytes3);
+
+			if (r == 255 && g == 255 && b == 255) {
+				angry[j][i] = '.';
+			
+			} else if (r==255 && g==0 && b==0){
+				angry[j][i] = '*';
+			
+			} else if (r==0 && g==255 && b==0){
+				angry[j][i] = '*';
+				
+			} else if (r==0 && g==0 && b==0){
+				angry[j][i] = '@';
+			
+			} else if (r==255 && g==255 && b==0){
+				angry[j][i] = '*';
+			
+			} else {
+				angry[j][i] = '#';
 			}
 		}
 	}
 
-	while (input !="q"){
+	string input;
+	while (input != "q"){
 		cout << "describe your feeling" << endl;
 		cout << "choose one"<< "\n" << "happy, angry, sick" << endl;
 		cin >> input;
-	}
+	
 
 	if (input== "happy"){
-		cout << smile[j][i] << "\n";
+		cout << smile[SIZE][SIZE] << "\n";
 	} else if (input == "angry"){
-		cout << angry[j][i] << "\n";
+		cout << angry[SIZE][SIZE] << "\n";
 	} else if (input == "sick"){
-		cout << sick[j][i] << "\n";
-	} else {
+		cout << sick[SIZE][SIZE] << "\n";
 		cout << "choose one"<< "\n" << "happy, angry, sick" << endl;
 	}
 
 	// //print out the converted array
-	// for (int i = 0; i < SIZE; i++) {
-	// 	for (int j = 0; j < SIZE; j++) {
-	// 		cout << grid[j][i] << " ";
-	// 	}
-	// 	cout << endl;
+		for (int i = 0; i < SIZE; i++) {
+			for (int j = 0; j < SIZE; j++) {
+				cout << smile[j][i] << " ";
+			}
+			cout << endl;
+		}
+
+		for (int i = 0; i < SIZE; i++) {
+			for (int j = 0; j < SIZE; j++) {
+				cout << sick[j][i] << " ";
+			}
+			cout << endl;
+		}
+
+		for (int i = 0; i < SIZE; i++) {
+			for (int j = 0; j < SIZE; j++) {
+				cout << angry[j][i] << " ";
+			}
+			cout << endl;
+		}
+
+
 	}
+	
 	return 0;
 }
 
