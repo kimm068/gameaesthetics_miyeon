@@ -15,6 +15,20 @@ static animation_t walkAnimation = {
     -1, //.finalindex
     1   //.frameskip
 };
+//
+//
+//static animation_t flyAnimation = {
+//    14,  //.index
+//    0,  //.frame
+//    1,  //.totalframes
+//    1,  //.width
+//    1,  //.height
+//    90, //.frameduration
+//    0,  //.nexttick
+//    0, //.loops
+//    -1, //.finalindex
+//    1   //.frameskip
+//};
 
 struct basicSprite {  // background
     int tileName;  // which tile to draw?
@@ -61,6 +75,12 @@ class ofApp : public ofBaseApp{
     bool leftPressed;
     bool upPressed;
     bool downPressed;
+    
+    bool playerDown;
+    bool playerUp;
+    bool playerRight;
+    bool playerLeft;
+    bool playerFly;
     
     void spaceFree(int dir);
     int getTileName(int x, int y);

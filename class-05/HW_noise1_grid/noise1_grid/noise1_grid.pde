@@ -4,15 +4,15 @@ int height = 500;
 
 int x= floor((width/cellsize)/2);
 int y= floor((height/cellsize)/2);
-int fx = 300;
-int fy = 300;
+int fx = 30;
+int fy = 30;
 
 int grid[][];
 int player[][];
 int food [][];
 
 void setup(){
-  size (500,500);
+  size (500, 500);
   grid = new int[width/cellsize][height/cellsize];
   player = new int[width/cellsize][height/cellsize];
   food = new int[width/cellsize][height/cellsize];
@@ -51,16 +51,27 @@ void draw(){
     }
     
    fill(0,0,255); 
-   rect (fx,fy,cellsize,cellsize);
+   rect (fx*cellsize,fy*cellsize,cellsize,cellsize);
    
    if (x==fx && y==fy){
-     //player[x][y]=0;
-     //food[fx][fy]=0;
-       textSize(40);
-       fill(255,255,255);
-      text("YOU WIN", 250, 250);
+    //player[x][y]=0;
+    //food[fx][fy]=0;
+      textSize(40);
+      fill(255,255,255);
+     text("YOU WIN", 250, 250);
    }
-  println(grid[x+1][y]);
+   
+   //if (grid[x][y]==grid[fx][fy]){
+   //  //player[x][y]=0;
+   //  //food[fx][fy]=0;
+   //    textSize(40);
+   //    fill(255,255,255);
+   //   text("YOU WIN", 250, 250);
+   //}
+  //println(grid[x+1][y]);
+  print (x);
+  print (" ");
+  println(y);
 }
 
 void keyPressed(){
@@ -83,9 +94,7 @@ void keyPressed(){
    if (keyCode == DOWN){
     if (grid[x][y+1]>255){
       y++;
-    }
-   }
-
-
+      }
+     }
    }
  }
